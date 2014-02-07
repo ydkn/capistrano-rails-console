@@ -2,6 +2,10 @@ def rvm_loaded?
   Gem::Specification::find_all_by_name('capistrano-rvm').any?
 end
 
+def rbenv_loaded?
+  Gem::Specification::find_all_by_name('capistrano-rbenv').any?
+end
+
 def bundler_loaded?
   Gem::Specification::find_all_by_name('capistrano-bundler').any?
 end
@@ -20,10 +24,11 @@ namespace :rails do
 
     command = []
     command << "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do" if rvm_loaded?
+    command << "#{ fetch :rbenv_prefix } " if rbenv_loaded?
     command << "bundle exec" if bundler_loaded?
     command << "rails console #{fetch(:rails_env)}"
 
-    exec %Q(ssh #{app_server.user}@#{app_server.hostname} -p #{app_server.port || 22} -t "cd #{current_path} && #{command.join(' ')}")
+    exec %Q(ssh #{app_server.netssh_options[:user]}@#{app_server.hostname} -p #{app_server.port || 22} -t "cd #{current_path} && #{command.join(' ')}")
   end
 
 end
