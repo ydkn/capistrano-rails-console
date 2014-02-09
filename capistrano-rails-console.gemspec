@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "capistrano-rails-console"
   spec.version       = Capistrano::Rails::Console::VERSION
   spec.authors       = ["Florian Schwab"]
-  spec.email         = ["schwab@fsserv.de"]
+  spec.email         = ["me@ydkn.de"]
   spec.description   = %q{Remote rails console for capistrano}
   spec.summary       = %q{Remote rails console for capistrano}
   spec.homepage      = "https://github.com/ydkn/capistrano-rails-console"
@@ -22,4 +22,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'yard'
 end
