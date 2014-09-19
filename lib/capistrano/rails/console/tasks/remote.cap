@@ -2,11 +2,12 @@ namespace :rails do
 
   desc "Interact with a remote rails console"
   task console: ['deploy:set_rails_env'] do
-    app_server = primary :app
-    ssh_cmd = "ssh #{app_server.netssh_options[:user]}@#{app_server.hostname} -p #{app_server.port || 22}"
-    cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}")
-    SSHKit.config.output << cmd
-    exec %Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
+    on primary :app do |host|
+      ssh_cmd = "ssh #{host.netssh_options[:user]}@#{host.hostname} -p #{host.port || 22}"
+      cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}")
+      SSHKit.config.output << cmd
+      exec %Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
+    end
   end
 
 end
