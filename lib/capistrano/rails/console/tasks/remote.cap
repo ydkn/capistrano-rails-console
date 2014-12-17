@@ -10,6 +10,11 @@ def bundler_loaded?
   Gem::Specification::find_all_by_name('capistrano-bundler').any?
 end
 
+def ssh_host(app_server)
+  [app_server.netssh_options[:user], app_server.hostname].compact.join('@')
+end
+
+
 namespace :rails do
 
   desc 'Access a remote rails console'
@@ -28,7 +33,7 @@ namespace :rails do
     command << "bundle exec" if bundler_loaded?
     command << "rails console #{fetch(:rails_env)}"
 
-    exec %Q(ssh #{app_server.netssh_options[:user]}@#{app_server.hostname} -p #{app_server.port || 22} -t "cd #{current_path} && #{command.join(' ')}")
+    exec %Q(ssh #{ssh_host(app_server)} -p #{app_server.port || 22} -t "cd #{current_path} && #{command.join(' ')}")
   end
 
 end
