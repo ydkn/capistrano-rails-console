@@ -1,39 +1,17 @@
-def rvm_loaded?
-  Gem::Specification::find_all_by_name('capistrano-rvm').any?
-end
-
-def rbenv_loaded?
-  Gem::Specification::find_all_by_name('capistrano-rbenv').any?
-end
-
-def bundler_loaded?
-  Gem::Specification::find_all_by_name('capistrano-bundler').any?
-end
-
 def ssh_host(app_server)
   [app_server.netssh_options[:user], app_server.hostname].compact.join('@')
 end
 
-
 namespace :rails do
 
-  desc 'Access a remote rails console'
+  desc "Interact with a remote rails console"
   task console: ['deploy:set_rails_env'] do
-    app_server = roles(:app).first
-
-    # RVM support
-    if rvm_loaded?
-      Rake::Task['rvm:hook'].invoke
-      set :rvm_map_bins, ((fetch(:rvm_map_bins) || []) + ['rails'])
+    on primary :app do |host|
+      ssh_cmd = "ssh #{ssh_host(host)}@#{host.hostname} -p #{host.port || 22}"
+      cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}")
+      SSHKit.config.output << cmd
+      exec %Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
     end
-
-    command = []
-    command << "#{fetch(:rvm_path)}/bin/rvm #{fetch(:rvm_ruby_version)} do" if rvm_loaded?
-    command << "#{ fetch :rbenv_prefix } " if rbenv_loaded?
-    command << "bundle exec" if bundler_loaded?
-    command << "rails console #{fetch(:rails_env)}"
-
-    exec %Q(ssh #{ssh_host(app_server)} -p #{app_server.port || 22} -t "cd #{current_path} && #{command.join(' ')}")
   end
 
 end
