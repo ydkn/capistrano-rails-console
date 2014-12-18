@@ -1,5 +1,10 @@
-def ssh_host(app_server)
-  [app_server.netssh_options[:user], app_server.hostname].compact.join('@')
+namespace :load do
+  task :defaults do
+    # add rails to rvm_map_bins
+    rvm_map_bins = fetch(:rvm_map_bins) || []
+    rvm_map_bins << :rails
+    set :rvm_map_bins, rvm_map_bins
+  end
 end
 
 namespace :rails do
@@ -7,9 +12,12 @@ namespace :rails do
   desc "Interact with a remote rails console"
   task console: ['deploy:set_rails_env'] do
     on primary :app do |host|
-      ssh_cmd = "ssh #{ssh_host(host)}@#{host.hostname} -p #{host.port || 22}"
-      cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}")
+      user_host = [host.user, host.hostname].compact.join('@')
+      ssh_cmd = "ssh #{user_host} -p #{host.port || 22}"
+
+      cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}", host: host)
       SSHKit.config.output << cmd
+
       exec %Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
     end
   end
