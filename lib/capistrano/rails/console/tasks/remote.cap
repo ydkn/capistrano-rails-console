@@ -12,14 +12,16 @@ namespace :rails do
   desc "Interact with a remote rails console"
   task console: ['deploy:set_rails_env'] do
     on primary :app do |host|
-      ssh_options = fetch(:ssh_options)
-      if ssh_options && ssh_options[:proxy]
-        template = ssh_options[:proxy].command_line_template
-        proxy_options = "-o ProxyCommand=\"#{template}\""
+      ssh_cmd_options = []
+
+      if host.ssh_options && host.ssh_options[:proxy]
+        template = host.ssh_options[:proxy].command_line_template
+        ssh_cmd_options << "ProxyCommand=\"#{template}\""
       end
 
+      ssh_cmd_options_str = "-o #{ssh_cmd_options.join(' ')}" if ssh_cmd_options.size > 0
       user_host = [host.user, host.hostname].compact.join('@')
-      ssh_cmd = "ssh #{proxy_options} #{user_host} -p #{host.port || 22}"
+      ssh_cmd = "ssh #{ssh_cmd_options_str} #{user_host} -p #{host.port || 22}"
 
       cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}", host: host)
       SSHKit.config.output << cmd
