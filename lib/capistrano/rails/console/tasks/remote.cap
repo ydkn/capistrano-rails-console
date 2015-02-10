@@ -16,10 +16,10 @@ namespace :rails do
 
       if host.ssh_options && host.ssh_options[:proxy]
         template = host.ssh_options[:proxy].command_line_template
-        ssh_cmd_options << "ProxyCommand=\"#{template}\""
+        ssh_cmd_options << "-o ProxyCommand=\"#{template}\""
       end
 
-      ssh_cmd_options_str = "-o #{ssh_cmd_options.join(' ')}" if ssh_cmd_options.size > 0
+      ssh_cmd_options_str = ssh_cmd_options.join(' ') if ssh_cmd_options.size > 0
       user_host = [host.user, host.hostname].compact.join('@')
       ssh_cmd = "ssh #{ssh_cmd_options_str} #{user_host} -p #{host.port || 22}"
 
