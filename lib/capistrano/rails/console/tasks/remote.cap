@@ -3,7 +3,7 @@ namespace :load do
     # add rails to rvm_map_bins
     rvm_map_bins = fetch(:rvm_map_bins) || []
     rvm_map_bins << :rails
-    set :rvm_map_bins, rvm_map_bins
+    set(:rvm_map_bins, rvm_map_bins)
   end
 end
 
@@ -23,10 +23,10 @@ namespace :rails do
       user_host = [host.user, host.hostname].compact.join('@')
       ssh_cmd = "ssh #{ssh_cmd_options_str} #{user_host} -p #{host.port || 22}"
 
-      cmd = SSHKit::Command.new(:rails, "console #{fetch :rails_env}", host: host)
+      cmd = SSHKit::Command.new(:rails, "console #{fetch(:rails_env)}", host: host)
       SSHKit.config.output << cmd
 
-      exec %Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
+      exec(%Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
     end
   end
 
