@@ -6,8 +6,9 @@ Remote rails console for capistrano
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano', '~> 3.0.0'
-    gem 'capistrano-rails-console'
+```ruby
+gem 'capistrano-rails-console'
+```
 
 And then execute:
 
@@ -21,7 +22,9 @@ Or install it yourself as:
 
 Require in `Capfile` to use the default task:
 
-    require 'capistrano/rails/console'
+```ruby
+require 'capistrano/rails/console'
+```
 
 This will add a task `rails:console`:
 
@@ -34,3 +37,7 @@ This will add a task `rails:console`:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+[![Gem Version](https://img.shields.io/gem/v/capistrano-rails-console.svg)](https://rubygems.org/gems/capistrano-rails-console)
+[![Dependencies](https://img.shields.io/gemnasium/ydkn/capistrano-rails-console.svg)](https://rubygems.org/gems/capistrano-rails-console)
