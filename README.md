@@ -39,5 +39,8 @@ This will add a task `rails:console`:
 5. Create new Pull Request
 
 
+&nbsp;
+
 [![Gem Version](https://img.shields.io/gem/v/capistrano-rails-console.svg)](https://rubygems.org/gems/capistrano-rails-console)
 [![Dependencies](https://img.shields.io/gemnasium/ydkn/capistrano-rails-console.svg)](https://rubygems.org/gems/capistrano-rails-console)
+[![Code Climate](https://img.shields.io/codeclimate/github/ydkn/capistrano-rails-console.svg)](https://codeclimate.com/github/ydkn/capistrano-rails-console)
