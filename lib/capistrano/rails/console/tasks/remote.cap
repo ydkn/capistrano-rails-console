@@ -23,7 +23,8 @@ namespace :rails do
       user_host = [host.user, host.hostname].compact.join('@')
       ssh_cmd = "ssh #{ssh_cmd_options_str} #{user_host} -p #{host.port || 22}"
 
-      cmd = SSHKit::Command.new(:rails, "console #{fetch(:rails_env)}", host: host)
+      sandbox_arg = ENV.key?('sandbox') || ENV.key?('s') ? '-s' : ''
+      cmd = SSHKit::Command.new(:rails, "console #{fetch(:rails_env)} #{sandbox_arg}", host: host)
       SSHKit.config.output << cmd
 
       exec(%Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
