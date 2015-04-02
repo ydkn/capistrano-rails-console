@@ -2,13 +2,6 @@ namespace :load do
   task :defaults do
     # add rails to rvm_map_bins
     set :rvm_map_bins, fetch(:rvm_map_bins, []).push(:rails)
-
-    # add which to map_bins
-    set :rvm_map_bins,   fetch(:rvm_map_bins,   []).push(:which)
-    set :rbenv_map_bins, fetch(:rbenv_map_bins, []).push(:which)
-
-    # add which to bundle_bins
-    set :bundle_bins, fetch(:bundle_bins, []).push(:which)
   end
 end
 
@@ -16,9 +9,7 @@ namespace :rails do
   desc "Interact with a remote rails console"
   task console: ['deploy:set_rails_env'] do
     on primary :app do |host|
-      within current_path do
-        fail 'Rails binary not found!' unless test(:which, 'rails')
-      end
+      test(:true) # initialize ssh_options on host
 
       ssh_cmd_options    = []
       rails_console_args = []
