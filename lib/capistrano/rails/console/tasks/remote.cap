@@ -7,7 +7,7 @@ end
 
 namespace :rails do
   desc "Interact with a remote rails console"
-  task console: ['deploy:set_rails_env'] do
+  task :console do
     on primary :app do |host|
       test(:true) # initialize ssh_options on host
 
@@ -21,7 +21,9 @@ namespace :rails do
 
       rails_console_args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
-      cmd = SSHKit::Command.new(:rails, "console #{fetch(:rails_env)} #{rails_console_args.join(' ')}", host: host)
+      rails_env = fetch(:rails_env, fetch(:stage, 'production'))
+
+      cmd = SSHKit::Command.new(:rails, "console #{rails_env} #{rails_console_args.join(' ')}", host: host)
       SSHKit.config.output << cmd
 
       user_host = [host.user, host.hostname].compact.join('@')
