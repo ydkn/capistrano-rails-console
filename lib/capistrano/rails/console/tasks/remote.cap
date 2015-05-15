@@ -26,7 +26,7 @@ namespace :rails do
       cmd = SSHKit::Command.new(:rails, "console #{rails_env} #{rails_console_args.join(' ')}", host: host)
       SSHKit.config.output << cmd
 
-      user_host = [host.user, host.hostname].compact.join('@')
+      user_host = [fetch(:user), host.hostname].compact.join('@')
       ssh_cmd = "ssh #{ssh_cmd_options.join(' ')} #{user_host} -p #{host.port || 22}"
 
       exec(%Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
