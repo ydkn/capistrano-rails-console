@@ -3,6 +3,7 @@
 ## Unreleased
 ### Fixed
 - removed dependency on capistrano-rails gem setting propper rails_env
+- setting ssh port through `ssh_options`
 
 ## 0.5.2 (2015-04-02)
 ### Fixed

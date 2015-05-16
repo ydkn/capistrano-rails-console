@@ -11,25 +11,27 @@ namespace :rails do
     on primary :app do |host|
       test(:true) # initialize ssh_options on host
 
-      ssh_cmd_options    = []
+      ssh_cmd_args       = []
       rails_console_args = []
 
       if host.ssh_options && host.ssh_options[:proxy]
         template = host.ssh_options[:proxy].command_line_template
-        ssh_cmd_options << "-o ProxyCommand=\"#{template}\""
+        ssh_cmd_args << "-o ProxyCommand=\"#{template}\""
       end
 
       rails_console_args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
       rails_env = fetch(:rails_env, fetch(:stage, 'production'))
 
-      cmd = SSHKit::Command.new(:rails, "console #{rails_env} #{rails_console_args.join(' ')}", host: host)
+      cmd = SSHKit::Command.new(:rails, :console, rails_env, *rails_console_args, host: host)
       SSHKit.config.output << cmd
 
-      user_host = [host.user, host.hostname].compact.join('@')
-      ssh_cmd = "ssh #{ssh_cmd_options.join(' ')} #{user_host} -p #{host.port || 22}"
+      port = host.port || (host.ssh_options || {})[:port]
+      ssh_cmd_args << "-p #{port}" if port
 
-      exec(%Q(#{ssh_cmd} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
+      ssh_cmd_args << [host.user, host.hostname].compact.join('@')
+
+      exec(%Q(ssh #{ssh_cmd_args.join(' ')} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
     end
   end
 end
