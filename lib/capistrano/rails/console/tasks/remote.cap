@@ -31,6 +31,11 @@ namespace :rails do
 
       ssh_cmd_args << [host.user, host.hostname].compact.join('@')
 
+      if host.ssh_options && host.ssh_options[:keys] && host.ssh_options[:keys].length > 0
+        identity = host.ssh_options[:keys][0]
+        ssh_cmd_args << "-i #{identity}"
+      end
+
       exec(%Q(ssh #{ssh_cmd_args.join(' ')} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})"))
     end
   end
