@@ -2,6 +2,9 @@
 [![Dependencies](https://img.shields.io/gemnasium/ydkn/capistrano-rails-console.svg)](https://gemnasium.com/ydkn/capistrano-rails-console)
 [![Code Climate](https://img.shields.io/codeclimate/github/ydkn/capistrano-rails-console.svg)](https://codeclimate.com/github/ydkn/capistrano-rails-console)
 
+[![Join the chat](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ydkn/capistrano-rails-console)
+
+
 # Capistrano::Rails::Console
 
 Remote rails console for capistrano
