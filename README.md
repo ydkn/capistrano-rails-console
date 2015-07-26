@@ -4,6 +4,8 @@
 
 # Capistrano::Rails::Console
 
+[![Join the chat at https://gitter.im/ydkn/capistrano-rails-console](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ydkn/capistrano-rails-console?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Remote rails console for capistrano
 
 ## Installation
