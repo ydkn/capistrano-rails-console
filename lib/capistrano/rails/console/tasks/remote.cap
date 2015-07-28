@@ -22,8 +22,9 @@ namespace :rails do
       rails_console_args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
       rails_env = fetch(:rails_env, fetch(:stage, 'production'))
+      bundle_mapped = SSHKit.config.command_map.prefix[:bundle] rescue nil
 
-      cmd = SSHKit::Command.new(:rails, :console, rails_env, *rails_console_args, host: host)
+      cmd = SSHKit::Command.new(((bundle_mapped.first + ' bundle') rescue :bundle), :exec, :rails, :console, rails_env, *rails_console_args, host: host)
       SSHKit.config.output << cmd
 
       port = host.port || (host.ssh_options || {})[:port]
