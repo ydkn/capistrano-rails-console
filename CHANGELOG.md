@@ -4,6 +4,8 @@
 ### Fixed
 - removed dependency on capistrano-rails gem setting propper rails_env
 - setting ssh port through `ssh_options`
+- setting ssh user through `ssh_options`
+- require a minimum version of 3.1.0 for capistrano (sshkit compatibility)
 
 ### Feature
 - support for ssh keys
