@@ -30,7 +30,12 @@ namespace :rails do
       port = host.port || (host.ssh_options || {})[:port]
       ssh_cmd_args << "-p #{port}" if port
 
-      ssh_cmd_args << [host.user, host.hostname].compact.join('@')
+      ssh_user = if host.ssh_options && host.ssh_options[:user]
+        host.ssh_options[:user]
+      else
+        host.user
+      end
+      ssh_cmd_args << [ssh_user, host.hostname].compact.join('@')
 
       if host.ssh_options && host.ssh_options[:keys] && host.ssh_options[:keys].length > 0
         identity = host.ssh_options[:keys][0]
