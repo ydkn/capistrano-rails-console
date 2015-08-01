@@ -5,7 +5,7 @@ module Capistrano
     # Console
     module Console
       # gem version
-      VERSION = '0.5.2'
+      VERSION = '1.0.0'
     end
   end
 end
