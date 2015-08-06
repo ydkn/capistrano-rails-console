@@ -19,6 +19,10 @@ namespace :rails do
         ssh_cmd_args << "-o ProxyCommand=\"#{template}\""
       end
 
+      if host.ssh_options && host.ssh_options[:host_name]
+        ssh_cmd_args << "-o HostName=\"#{host.ssh_options[:host_name]}\""
+      end
+
       rails_console_args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
       rails_env = fetch(:rails_env, fetch(:stage, 'production'))
