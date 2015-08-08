@@ -1,5 +1,12 @@
 # Change Log
 
+## Unreleased
+### Fixed
+- setting ssh hostname through `ssh_options`
+
+### Feature
+- log ssh command before it is being executed
+
 ## 1.0.0 (2015-08-01)
 ### Fixed
 - removed dependency on capistrano-rails gem setting propper rails_env
