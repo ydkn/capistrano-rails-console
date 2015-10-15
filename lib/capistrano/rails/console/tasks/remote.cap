@@ -6,7 +6,7 @@ namespace :load do
 end
 
 namespace :rails do
-  desc "Interact with a remote rails console"
+  desc 'Interact with a remote rails console'
   task :console do
     on primary :app do |host|
       test(:true) # initialize ssh_options on host
