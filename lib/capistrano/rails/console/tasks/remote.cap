@@ -45,7 +45,7 @@ namespace :rails do
         ssh_cmd_args << "-i #{identity}"
       end
 
-      ssh_cmd = %Q(ssh #{ssh_cmd_args.join(' ')} -t "cd #{current_path} && (#{cmd.environment_string} #{cmd})")
+      ssh_cmd = %Q(ssh #{ssh_cmd_args.join(' ')} -t '$SHELL -l -c "cd #{current_path} && (#{cmd.environment_string} #{cmd})"')
 
       debug("Running #{ssh_cmd.yellow} on #{host.hostname.blue}")
 
