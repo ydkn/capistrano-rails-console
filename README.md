@@ -7,7 +7,8 @@
 
 # Capistrano::Rails::Console
 
-Remote rails console for capistrano
+Remote rails console for capistrano.
+
 
 ## Installation
 
@@ -25,6 +26,7 @@ Or install it yourself as:
 
     $ gem install capistrano-rails-console
 
+
 ## Usage
 
 Require in `Capfile` to use the default task:
@@ -41,10 +43,12 @@ You can also start a sandbox session:
 
     $ cap production rails:console sandbox=1
 
+
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Bug reports and pull requests are welcome on GitHub at https://github.com/ydkn/capistrano-rails-console.
+
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
