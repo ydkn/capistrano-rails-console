@@ -4,8 +4,8 @@ module Capistrano
   module Rails
     # Console
     module Console
-      # gem version
-      VERSION = '1.0.1'
+      # Gem version
+      VERSION = '1.1.0'
     end
   end
 end

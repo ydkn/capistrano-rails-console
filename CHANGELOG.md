@@ -1,6 +1,10 @@
 # Change Log
 
-## 1.0.0 (2015-11-12)
+## Unreleased
+### Changed
+- switched connection part to _capistrano-interactive_
+
+## 1.0.1 (2015-11-12)
 ### Fixed
 - setting ssh hostname through `ssh_options`
 - use login shell
