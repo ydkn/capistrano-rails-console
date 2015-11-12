@@ -1,8 +1,9 @@
 # Change Log
 
-## Unreleased
+## 1.0.0 (2015-11-12)
 ### Fixed
 - setting ssh hostname through `ssh_options`
+- use login shell
 
 ### Feature
 - log ssh command before it is being executed
