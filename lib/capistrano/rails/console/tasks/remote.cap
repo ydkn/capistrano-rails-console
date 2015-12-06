@@ -27,9 +27,6 @@ namespace :rails do
 
       rails_env = fetch(:rails_env, fetch(:stage, 'production'))
 
-      cmd = SSHKit::Command.new(:rails, :console, rails_env, *rails_console_args, host: host)
-      SSHKit.config.output << cmd
-
       port = host.port || (host.ssh_options || {})[:port]
       ssh_cmd_args << "-p #{port}" if port
 
@@ -45,9 +42,11 @@ namespace :rails do
         ssh_cmd_args << "-i #{identity}"
       end
 
+      cmd = SSHKit::Command.new(:rails, :console, rails_env, *rails_console_args, host: host)
+
       ssh_cmd = %Q(ssh #{ssh_cmd_args.join(' ')} -t '$SHELL -l -c "cd #{current_path} && (#{cmd.environment_string} #{cmd})"')
 
-      debug("Running #{ssh_cmd.yellow} on #{host.hostname.blue}")
+      debug("Running #{ssh_cmd} on #{host.hostname}")
 
       exec(ssh_cmd)
     end
