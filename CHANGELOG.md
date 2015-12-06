@@ -4,6 +4,10 @@
 ### Changed
 - switched connection part to _capistrano-interactive_
 
+## 1.0.2 (2015-12-06)
+### Fixed
+- works with sshkit 1.8
+
 ## 1.0.1 (2015-11-12)
 ### Fixed
 - setting ssh hostname through `ssh_options`
