@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'capistrano',             '>= 3.1.0', '< 4.0.0'
   spec.add_dependency 'capistrano-interactive', '~> 0.2.0'
 
+  spec.add_dependency 'sshkit', '>= 1.4'
+
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'yard'
