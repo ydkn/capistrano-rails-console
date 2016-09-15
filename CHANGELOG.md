@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## 2.0.0 (2016-09-16)
 ### Changed
 - switched connection part to _sshkit-interactive_
 - allow setting rails environment separately deployment environment
