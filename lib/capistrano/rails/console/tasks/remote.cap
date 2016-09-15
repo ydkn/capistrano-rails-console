@@ -4,7 +4,8 @@ namespace :load do
     set :rvm_map_bins, fetch(:rvm_map_bins, []).push(:rails)
 
     # Default values
-    set :console_env, -> { fetch(:rails_env, fetch(:stage, 'production')) }
+    set :console_env,  -> { fetch(:rails_env, fetch(:stage, 'production')) }
+    set :console_user, -> { fetch(:app_user, nil) }
   end
 end
 
@@ -14,9 +15,11 @@ namespace :rails do
     args  = []
     args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
-    on primary(:app) do
+    run_interactively primary(:app) do
       within current_path do
-        interact(:rails, :console, fetch(:console_env), *args)
+        as user: fetch(:console_user) do
+          execute(:rails, :console, fetch(:console_env), *args)
+        end
       end
     end
   end

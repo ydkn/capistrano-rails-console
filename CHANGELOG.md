@@ -2,7 +2,9 @@
 
 ## Unreleased
 ### Changed
-- switched connection part to _capistrano-interactive_
+- switched connection part to _sshkit-interactive_
+- allow setting rails environment separately deployment environment
+- allow setting user to run rails console separately from ssh user
 
 ## 1.0.2 (2015-12-06)
 ### Fixed

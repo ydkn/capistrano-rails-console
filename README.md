@@ -43,6 +43,20 @@ You can also start a sandbox session:
 
     $ cap production rails:console sandbox=1
 
+## Options
+
+### Rails environment
+
+```ruby
+set :console_env, :production
+```
+
+### User
+
+```ruby
+set :console_user, :appuser
+```
+
 
 ## Contributing
 
