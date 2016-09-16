@@ -3,7 +3,7 @@
 ## 2.0.0 (2016-09-16)
 ### Changed
 - switched connection part to _sshkit-interactive_
-- allow setting rails environment separately deployment environment
+- allow setting rails environment separately from deployment environment
 - allow setting user to run rails console separately from ssh user
 
 ## 1.0.2 (2015-12-06)
