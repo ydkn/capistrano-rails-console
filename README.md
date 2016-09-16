@@ -48,13 +48,14 @@ You can also start a sandbox session:
 ### Rails environment
 
 ```ruby
-set :console_env, :production
+set :console_env, :production # use different environment than deployment environment (rails_env)
 ```
 
 ### User
 
 ```ruby
-set :console_user, :appuser
+set :console_user, :appuser # run rails console as appuser through sudo
+set :console_user, nil # explicitly disable switching user through sudo
 ```
 
 
