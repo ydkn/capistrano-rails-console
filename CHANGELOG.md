@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+### Feature
+- add support for `rails dbconsole`
+
 ## 2.0.0 (2016-09-16)
 ### Changed
 - switched connection part to _sshkit-interactive_

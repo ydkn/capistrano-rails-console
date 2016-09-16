@@ -23,4 +23,15 @@ namespace :rails do
       end
     end
   end
+
+  desc 'Interact with a remote rails dbconsole'
+  task :dbconsole do
+    run_interactively primary(:app) do
+      within current_path do
+        as user: fetch(:console_user) do
+          execute(:rails, :dbconsole, '-e', fetch(:console_env))
+        end
+      end
+    end
+  end
 end

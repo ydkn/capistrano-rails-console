@@ -7,7 +7,7 @@
 
 # Capistrano::Rails::Console
 
-Remote rails console for capistrano.
+Remote rails console and dbconsole for capistrano.
 
 
 ## Installation
@@ -35,13 +35,17 @@ Require in `Capfile` to use the default task:
 require 'capistrano/rails/console'
 ```
 
-This will add a task `rails:console`:
+Run a remote rails console with:
 
     $ cap production rails:console
 
 You can also start a sandbox session:
 
     $ cap production rails:console sandbox=1
+
+Or run a dbconsole:
+
+    $ cap production rails:dbconsole
 
 ## Options
 
