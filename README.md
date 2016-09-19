@@ -15,7 +15,7 @@ Remote rails console and dbconsole for capistrano.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'capistrano-rails-console'
+gem 'capistrano-rails-console', require: false
 ```
 
 And then execute:

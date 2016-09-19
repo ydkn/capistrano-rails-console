@@ -3,6 +3,8 @@
 ## Unreleased
 ### Feature
 - add support for `rails dbconsole`
+### Fixed
+- revert unintentional change when the gem is required
 
 ## 2.0.0 (2016-09-16)
 ### Changed
