@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## 2.1.0 (2016-09-23)
 ### Feature
 - add support for `rails dbconsole`
 ### Fixed
