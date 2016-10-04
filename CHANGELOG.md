@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.1.1 (2016-10-04)
+### Feature
+- use password from database.yml for dbconsole
+
 ## 2.1.0 (2016-09-23)
 ### Feature
 - add support for `rails dbconsole`
