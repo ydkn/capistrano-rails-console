@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+### Feature
+- support for rbenv and chruby
+
 ## 2.1.1 (2016-10-04)
 ### Feature
 - use password from database.yml for dbconsole
