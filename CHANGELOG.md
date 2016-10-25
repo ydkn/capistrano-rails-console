@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## 2.2.0 (2016-10-25)
 ### Feature
 - support for rbenv and chruby
 
