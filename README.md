@@ -29,6 +29,11 @@ Or install it yourself as:
 
 ## Usage
 
+You should ensure there is a `rails` binstub in the `current/bin` directory on the server otherwise
+this gem won't work (because rails itself won't work).
+If you experience any problems please verify that manually running `rails console` on the server does work.
+If it doesn't you are deploying your rails application wrong (check [#18](https://github.com/ydkn/capistrano-rails-console/issues/18) or [#26](https://github.com/ydkn/capistrano-rails-console/issues/26) for details)!
+
 Require in `Capfile` to use the default task:
 
 ```ruby
