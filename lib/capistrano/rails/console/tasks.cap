@@ -37,4 +37,6 @@ namespace :rails do
       end
     end
   end
+
+  task db: :dbconsole
 end

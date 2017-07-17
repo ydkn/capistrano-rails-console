@@ -51,6 +51,7 @@ You can also start a sandbox session:
 Or run a dbconsole:
 
     $ cap production rails:dbconsole
+    $ cap production rails:db
 
 ## Options
 
