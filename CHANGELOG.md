@@ -1,5 +1,9 @@
 # Change Log
 
+## 2.2.1 (2017-09-04)
+### Feature
+- [add rails:db alias to rails:dbconsole](https://github.com/ydkn/capistrano-rails-console/pull/32)
+
 ## 2.2.0 (2016-10-25)
 ### Feature
 - support for rbenv and chruby
