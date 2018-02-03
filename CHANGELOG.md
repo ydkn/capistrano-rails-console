@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+### Feature
+- Allow to set capistrano role to select server for remote console #33
+
 ## 2.2.1 (2017-09-04)
 ### Feature
 - [add rails:db alias to rails:dbconsole](https://github.com/ydkn/capistrano-rails-console/pull/32)

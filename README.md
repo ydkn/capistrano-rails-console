@@ -66,6 +66,12 @@ set :console_user, :appuser # run rails console as appuser through sudo
 set :console_user, nil # explicitly disable switching user through sudo
 ```
 
+### User
+
+```ruby
+set :console_role, :app # start remote console on primary server for this role
+```
+
 
 ## Contributing
 

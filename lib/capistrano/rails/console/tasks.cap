@@ -9,6 +9,7 @@ namespace :load do
     # Default values
     set :console_env,  -> { fetch(:rails_env, fetch(:stage, 'production')) }
     set :console_user, -> { fetch(:app_user, nil) }
+    set :console_role, :app
   end
 end
 
@@ -18,7 +19,7 @@ namespace :rails do
     args  = []
     args << '--sandbox' if ENV.key?('sandbox') || ENV.key?('s')
 
-    run_interactively primary(:app) do
+    run_interactively primary(fetch(:console_role)) do
       within current_path do
         as user: fetch(:console_user) do
           execute(:rails, :console, fetch(:console_env), *args)
@@ -29,7 +30,7 @@ namespace :rails do
 
   desc 'Interact with a remote rails dbconsole'
   task :dbconsole do
-    run_interactively primary(:app) do
+    run_interactively primary(fetch(:console_role)) do
       within current_path do
         as user: fetch(:console_user) do
           execute(:rails, :dbconsole, '-p', '-e', fetch(:console_env))
