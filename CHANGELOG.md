@@ -2,7 +2,8 @@
 
 ## Unreleased
 ### Feature
-- Allow to set capistrano role to select server for remote console #33
+- allow to set capistrano role to select server for remote console (#33)
+- allow to set shell used on server (#31)
 
 ## 2.2.1 (2017-09-04)
 ### Feature

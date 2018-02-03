@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'capistrano',         '>= 3.5.0', '< 4.0.0'
-  spec.add_dependency 'sshkit-interactive', '~> 0.2.0'
+  spec.add_dependency 'sshkit-interactive', '~> 0.3.0'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'

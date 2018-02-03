@@ -72,6 +72,12 @@ set :console_user, nil # explicitly disable switching user through sudo
 set :console_role, :app # start remote console on primary server for this role
 ```
 
+### Shell
+
+```ruby
+set :console_shell, '/bin/bash' # select shell to be used on server in case you experience problems (see #31)
+```
+
 
 ## Contributing
 
