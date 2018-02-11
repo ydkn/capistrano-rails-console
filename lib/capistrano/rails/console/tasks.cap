@@ -23,7 +23,7 @@ namespace :rails do
     run_interactively primary(fetch(:console_role)), shell: fetch(:console_shell) do
       within current_path do
         as user: fetch(:console_user) do
-          execute(:rails, :console, fetch(:console_env), *args)
+          execute(:rails, :console, '-e', fetch(:console_env), *args)
         end
       end
     end
