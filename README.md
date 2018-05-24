@@ -40,6 +40,7 @@ require 'capistrano/rails/console'
 Run a remote rails console with:
 
     $ cap production rails:console
+    $ cap production rails:c
 
 You can also start a sandbox session:
 

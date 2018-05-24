@@ -5,6 +5,7 @@
 - remove rails 5.2 deprecation: _Passing the environment's name as a regular argument is deprecated and will be removed in the next Rails version. Please, use the -e option instead._
 - allow to set capistrano role to select server for remote console (#33)
 - allow to set shell used on server (#31)
+- [add rails:c alias to rails:console](https://github.com/ydkn/capistrano-rails-console/issues/36)
 
 ## 2.2.1 (2017-09-04)
 ### Feature
